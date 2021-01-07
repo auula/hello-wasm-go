@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello WebAssembly For Golang</title>
+</head>
+<body style="text-align: center">
+    <p>You Name:</p>
+    <input id="name" type="text">
+    <button id="btn">Running</button>
+    <h1 id="hello"></h1>
+</body>
+<script src="wasm_exec.js"></script>
+<script>
+    const go = new Go();
+    WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
+        go.run(result.instance);
+    });
+</script>
+</html>
